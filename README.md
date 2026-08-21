@@ -46,6 +46,8 @@ Verify the application is up.
 curl localhost:8080/actuator/health
 ```
 
+PostgreSQL is published on host port `5433`, not the default `5432`, so it does not collide with a locally installed server. Flyway applies the schema on startup.
+
 Stockfish is not required for the early milestones. Lichess exposes its own server side evaluations for a large share of games, which is enough to build the storage and query layers before the engine pool exists.
 
 ## Planned API
