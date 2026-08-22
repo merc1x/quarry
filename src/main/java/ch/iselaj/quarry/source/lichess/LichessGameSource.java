@@ -39,6 +39,7 @@ public class LichessGameSource implements GameSource {
                 .pathSegment(username)
                 .queryParam("max", max)
                 .queryParam("evals", true)
+                .queryParam("pgnInJson", true)
                 .build()
                 .encode()
                 .toUri();

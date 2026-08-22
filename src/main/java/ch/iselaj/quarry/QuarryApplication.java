@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import ch.iselaj.quarry.game.GameImportService;
 import ch.iselaj.quarry.source.GameSource;
 
 @SpringBootApplication
@@ -18,13 +19,9 @@ public class QuarryApplication {
 		SpringApplication.run(QuarryApplication.class, args);
 	}
 
-	@Bean
-	ApplicationRunner smokeTest(GameSource source) {
-		return args -> {
-			try (var games = source.fetchGames("happysettler", 20)) {
-    log.info("fetched {} games", games.count());
 
-			}
-		};
-	}
+	@Bean
+		ApplicationRunner smokeTest(GameImportService importService) {
+    		return args -> importService.importGames("HappySettler", 20);
+		}
 }
