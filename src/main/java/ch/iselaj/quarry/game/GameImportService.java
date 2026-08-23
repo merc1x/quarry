@@ -1,9 +1,11 @@
 package ch.iselaj.quarry.game;
 
+import ch.iselaj.quarry.position.PositionService;
 import ch.iselaj.quarry.source.GameSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import ch.iselaj.quarry.position.PositionService;
 
 @Service
 public class GameImportService {
@@ -12,10 +14,12 @@ public class GameImportService {
 
     private final GameSource source;
     private final GameRepository repository;
+    private final PositionService positions;
 
-    public GameImportService(GameSource source, GameRepository repository) {
+    public GameImportService(GameSource source, GameRepository repository, PositionService positions) {
         this.source = source;
         this.repository = repository;
+        this.positions = positions;
     }
 
     public ImportResult importGames(String username, int max) {
@@ -28,7 +32,8 @@ public class GameImportService {
                     skipped++;
                     continue;
                 }
-                repository.save(new Game(source.name(), raw.externalId(), raw.payload()));
+                var game = repository.save(new Game(source.name(), raw.externalId(), raw.payload()));
+                positions.extract(game.getId(), game.getPgn());
                 imported++;
             }
         }

@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Value;
 
 import ch.iselaj.quarry.game.GameImportService;
+import ch.iselaj.quarry.game.GameRepository;
+import ch.iselaj.quarry.position.PgnParser;
 import ch.iselaj.quarry.source.GameSource;
 
 @SpringBootApplication
@@ -24,9 +26,9 @@ public class QuarryApplication {
 
 	@Bean
 	ApplicationRunner smokeTest(
-        	GameImportService importService,
-        	@Value("${quarry.import.username}") String username,
-        	@Value("${quarry.import.max}") int max) {
-    	return args -> importService.importGames(username, max);
+    	GameImportService importService,
+        @Value("${quarry.import.username}") String username,
+        @Value("${quarry.import.max}") int max) {
+	 return args -> importService.importGames(username, max);
 	}
 }
