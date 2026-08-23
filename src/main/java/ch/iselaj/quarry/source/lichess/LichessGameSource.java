@@ -93,8 +93,8 @@ public class LichessGameSource implements GameSource {
        private RawGame toRawGame(String line) {
         try {
             var node = mapper.readTree(line);
-            var id = node.path("id").asText();
-            var pgn = node.path("pgn").asText();
+            var id = node.path("id").asString();
+            var pgn = node.path("pgn").asString();
             return new RawGame(id, pgn.isBlank() ? line : pgn);
             } catch (tools.jackson.core.JacksonException e) {
             throw new IllegalStateException("Malformed NDJSON line from Lichess", e);
