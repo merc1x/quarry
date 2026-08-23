@@ -4,7 +4,7 @@ Chess data pipeline. Fetches games from Lichess and Chess.com, parses them into 
 
 quarry does the fetching and the computing. It does not interpret. Anything that requires chess understanding, such as opening repertoires, deviation detection or training, lives in the services that consume this API.
 
-> **Status** Early development. Milestone 2 done, games are imported and stored. Parsing into positions is next.
+> **Status** Early development. Games are imported from Lichess and parsed into positions. Stockfish evaluation is next.
 
 ## Why this exists
 
@@ -63,15 +63,16 @@ POST /evaluations                 evaluate a batch of FEN positions
 The evaluation endpoint answers synchronously for cached positions and enqueues the rest, returning a job reference. Callers are never blocked waiting for Stockfish.
 
 ## Roadmap
-
 - [x] **M1** Fetch a player's games from Lichess and count them
-- [x] **M2** Parse PGN into games and positions, persist to PostgreSQL
-- [ ] **M3** Talk to a single Stockfish process over UCI, synchronously
-- [ ] **M4** Engine pool, virtual thread orchestration, idempotent and resumable imports
-- [ ] **M5** REST API and query layer
-- [ ] **M6** Chess.com as a second source behind the same `GameSource` interface
+- [x] **M2** Import games and persist them idempotently
+- [x] **M3** Parse PGN into positions using chesslib
+- [ ] **M4** Test suite with Testcontainers
+- [ ] **M5** Talk to a single Stockfish process over UCI, synchronously
+- [ ] **M6** Engine pool, virtual thread orchestration, resumable imports
+- [ ] **M7** REST API and query layer
+- [ ] **M8** Chess.com as a second source behind the same `GameSource` interface
 
-Milestone 4 is the substance of this project. Everything before it is groundwork.
+Milestone 6 is the substance of this project. Everything before it is groundwork.
 
 ## Rate limits and etiquette
 
