@@ -12,3 +12,7 @@ management:
     web:
       exposure:
         include: health
+quarry:
+  import:
+    username: ${QUARRY_IMPORT_USERNAME:AnishGiri}
+    max: 20
