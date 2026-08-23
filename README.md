@@ -64,8 +64,8 @@ The evaluation endpoint answers synchronously for cached positions and enqueues 
 
 ## Roadmap
 
-- [ ] **M1** Fetch a player's games from Lichess and count them
-- [ ] **M2** Parse PGN into games and positions, persist to PostgreSQL
+- [x] **M1** Fetch a player's games from Lichess and count them
+- [x] **M2** Parse PGN into games and positions, persist to PostgreSQL
 - [ ] **M3** Talk to a single Stockfish process over UCI, synchronously
 - [ ] **M4** Engine pool, virtual thread orchestration, idempotent and resumable imports
 - [ ] **M5** REST API and query layer
