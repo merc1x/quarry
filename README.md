@@ -4,7 +4,7 @@ Chess data pipeline. Fetches games from Lichess and Chess.com, parses them into 
 
 quarry does the fetching and the computing. It does not interpret. Anything that requires chess understanding, such as opening repertoires, deviation detection or training, lives in the services that consume this API.
 
-> **Status** Early development. Milestone 1 in progress. Not usable yet.
+> **Status** Early development. Milestone 2 done, games are imported and stored. Parsing into positions is next.
 
 ## Why this exists
 
