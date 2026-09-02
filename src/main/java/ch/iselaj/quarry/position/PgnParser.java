@@ -31,11 +31,15 @@ public class PgnParser {
         var moves = new ArrayList<ParsedMove>();
         int ply = 0;
 
-        for (var move : game.getHalfMoves()) {
+                for (var move : game.getHalfMoves()) {
             var san = move.getSan();
             var uci = move.toString();
             board.doMove(move);
             moves.add(new ParsedMove(ply++, board.getFen(), san, uci));
+        }
+
+        if (moves.isEmpty()) {
+            throw new IllegalArgumentException("PGN contained no moves");
         }
 
         return moves;
